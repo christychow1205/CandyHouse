@@ -185,6 +185,7 @@
             resource_title: "Resources",
             resource_text: "Take a look at our beautiful facility and happy children at play!",
             contact_title: "Contact Us",
+            contact_text: "If you would like to schedule a tour or learn more, please contact us.",
             bathroom: "Bathroom",
             sleeping_room: "Sleeping Room",
             play_room: "Play Room",
@@ -195,9 +196,9 @@
             img_indoor1: "Indoor Play Area",
             img_indoor2: "Indoor Play Area",
             img_indoor3: "Indoor Play Area",
-            img_outdoor1: "Outdoor Play Area",
+            img_outdoor1: "Indoor Play Area",
             img_outdoor2: "Outdoor Play Area",
-            img_outdoor3: "Indoor Play Area"
+            img_outdoor3: "Outdoor Play Area"
         },
         cn: {
             title: "欢迎来到阳光托儿所",
@@ -218,12 +219,13 @@
             resource_title: "资料图库",
             resource_text: "看看我们的设施环境和快乐玩耍的孩子们！",
             contact_title: "联系我们",
+            contact_text: "如果您想预约参观或了解更多信息，请联系我们。",
             img_indoor1: "室内活动区",
             img_indoor2: "室内活动区",
             img_indoor3: "室内活动区",
-            img_outdoor1: "户外活动区",
+            img_outdoor1: "室内活动区",
             img_outdoor2: "户外活动区",
-            img_outdoor3: "室内活动区",
+            img_outdoor3: "户外活动区",
             bathroom: "洗手间",
             sleeping_room: "睡觉区",
             play_room: "活动室",
@@ -265,7 +267,7 @@
             <a data-translate="staff_title" id="nav-staff" onclick="showPanel('staff')">Our Staff</a>
         </nav>
         <div class="header-logo">
-            <img src="logo.webp" alt="CandyHouse Daycare Logo">
+            <img src="logo.webp" >
         </div>
         <nav class="header-nav right-nav">
             <a data-translate="resource_title" id="nav-resource" onclick="showPanel('resource')">Resources</a>
@@ -316,37 +318,47 @@
         <p data-translate="resource_text">Take a look at our beautiful facility and happy children at play!</p>
         <div class="cards">
             <div class="card">
-                <img src="indoor_1.jpg" alt="Play Room" style="width:100%; border-radius: 10px;">
-                <h3 data-translate="img_indoor1">Play Room</h3>
+                <img src="indoor_1.jpg" style="width:100%; border-radius: 10px;">
+                <h3 data-translate="img_indoor1">Indoor Play Area</h3>
             </div>
             <div class="card">
-                <img src="indoor_2.jpg" alt="Outdoor Area" style="width:100%; border-radius: 10px;">
-                <h3 data-translate="img_indoor2">Outdoor Area</h3>
+                <img src="indoor_2.jpg" style="width:100%; border-radius: 10px;">
+                <h3 data-translate="img_indoor2">Indoor Play Area</h3>
             </div>
             <div class="card">
-                <img src="indoor_3.png" alt="Study Room" style="width:100%; border-radius: 10px;">
-                <h3 data-translate="img_indoor3">Study Room</h3>
+                <img src="indoor_3.png" style="width:100%; border-radius: 10px;">
+                <h3 data-translate="img_indoor3">Indoor Play Area</h3>
             </div>
             <div class="card">
-                <img src="outdoor_1.jpg" alt="Study Room1" style="width:100%; border-radius: 10px;">
-                <h3 data-translate="img_outdoor1">Study Room</h3>
+                <img src="outdoor_1.jpg" style="width:100%; border-radius: 10px;">
+                <h3 data-translate="img_outdoor1">Indoor Play Area</h3>
             </div>
             <div class="card">
-                <img src="outdoor_2.jpg" alt="Study Room2" style="width:100%; border-radius: 10px;">
-                <h3 data-translate="img_outdoor2">Study Room</h3>
+                <img src="outdoor_2.jpg" style="width:100%; border-radius: 10px;">
+                <h3 data-translate="img_outdoor2">Outdoor Play Area</h3>
             </div>
             <div class="card">
-                <img src="outdoor_3.png" alt="Study Room3" style="width:100%; border-radius: 10px;">
-                <h3 data-translate="img_outdoor3">Study Room</h3>
+                <img src="outdoor_3.png" style="width:100%; border-radius: 10px;">
+                <h3 data-translate="img_outdoor3">Outdoor Play Area</h3>
             </div>
         </div>
+        <div class="download-schedule" style="margin-top: 15px">
+        <a href="Infant Daily Schedule.pdf" download>
+            <img src="download_icon.png" alt="Download Icon" style="width:24px; height:24px;">
+            <span data-translate="download_infant_schedule">Infant Daily Schedule</span>
+        </a>
+        <a href="Toddler Daily Schedule.pdf" download>
+            <img src="download_icon.png" alt="Download Icon" style="width:24px; height:24px;">
+            <span data-translate="download_toddler_schedule">Toddler Daily Schedule</span>
+        </a>
+    </div>
     </section>
 
     <section id="contact" class="section switch-panel">
-        <h2>Contact Us</h2>
-        <p>We'd love to hear from you!</p>
-        <p><strong>Email:</strong> info@candyhousedaycare.com</p>
-        <p><strong>Phone:</strong> (123) 456-7890</p>
+        <h2 data-translate="contact_title">Contact Us</h2>
+        <p data-translate="contact_text">If you would like to schedule a tour or learn more, please contact us!</p>
+<p><strong>Email:</strong> <a href="mailto:christychow1205@gmail.com">christychow1205@gmail.com</a></p>
+<p><strong>Phone:</strong> <a href="tel:626-999-1287">626-999-1287</a></p>
         <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6338.404054254222!2d-121.87705132264549!3d37.408699472080045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fce9975dc75b7%3A0xfa9f0575d7c6086f!2s1967%20Junewood%20Ave%2C%20San%20Jose%2C%20CA%2095132!5e0!3m2!1sen!2sus!4v1734479952660!5m2!1sen!2sus"
             width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
