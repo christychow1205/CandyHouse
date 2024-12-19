@@ -152,13 +152,67 @@
             display: block;
         }
 
+        .contact-map {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            margin-top: 20px;
+        }
+
+        .contact-map iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .download-schedule {
+            display: flex;
+            flex-wrap: wrap;
+            /* 启用换行 */
+            gap: 15px;
+            /* 增加间距 */
+            justify-content: center;
+        }
+
+        .download-schedule a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            gap: 10px;
+        }
+
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 2.5rem;
+
+            .header-nav {
+                flex-direction: column;
+                align-items: center;
+                font-size: 16px;
             }
 
-            .section h2 {
-                font-size: 2rem;
+            .header-nav a {
+                padding: 8px 10px;
+            }
+
+            .download-schedule {
+                flex-direction: column;
+            }
+
+            .download-schedule a {
+                justify-content: center;
+            }
+
+            .lang-switch button {
+                margin-left: 0px;
+                padding: 0px;
+            }
+            .section{
+                padding: 0px 20px;
+            }
+            .section h2{
+                margin: 10px;
             }
         }
     </style>
@@ -246,6 +300,7 @@
                 el.textContent = t[key];
             }
         });
+        localStorage.setItem('language', lang);
     }
 
     function showPanel(panelId) {
@@ -253,7 +308,17 @@
             panel.classList.remove('active');
         });
         document.getElementById(panelId).classList.add('active');
+        localStorage.setItem('currentPanel', panelId);
+
     }
+    document.addEventListener('DOMContentLoaded', () => {
+        const savedPanel = localStorage.getItem('currentPanel');
+        if (savedPanel) {
+            showPanel(savedPanel);
+        }
+        const savedLang = localStorage.getItem('language') || 'en';
+        switchLanguage(savedLang);
+    });
 </script>
 
 <body>
@@ -267,7 +332,7 @@
             <a data-translate="staff_title" id="nav-staff" onclick="showPanel('staff')">Our Staff</a>
         </nav>
         <div class="header-logo">
-            <img src="logo.webp" >
+            <img src="logo.webp">
         </div>
         <nav class="header-nav right-nav">
             <a data-translate="resource_title" id="nav-resource" onclick="showPanel('resource')">Resources</a>
@@ -343,26 +408,27 @@
             </div>
         </div>
         <div class="download-schedule" style="margin-top: 15px">
-        <a href="Infant Daily Schedule.pdf" download>
-            <img src="download_icon.png" alt="Download Icon" style="width:24px; height:24px;">
-            <span data-translate="download_infant_schedule">Infant Daily Schedule</span>
-        </a>
-        <a href="Toddler Daily Schedule.pdf" download>
-            <img src="download_icon.png" alt="Download Icon" style="width:24px; height:24px;">
-            <span data-translate="download_toddler_schedule">Toddler Daily Schedule</span>
-        </a>
-    </div>
+            <a href="Infant Daily Schedule.pdf" download>
+                <img src="download_icon.png" alt="Download Icon" style="width:24px; height:24px;">
+                <span data-translate="download_infant_schedule">Infant Daily Schedule</span>
+            </a>
+            <a href="Toddler Daily Schedule.pdf" download>
+                <img src="download_icon.png" alt="Download Icon" style="width:24px; height:24px;">
+                <span data-translate="download_toddler_schedule">Toddler Daily Schedule</span>
+            </a>
+        </div>
     </section>
 
     <section id="contact" class="section switch-panel">
         <h2 data-translate="contact_title">Contact Us</h2>
         <p data-translate="contact_text">If you would like to schedule a tour or learn more, please contact us!</p>
-<p><strong>Email:</strong> <a href="mailto:christychow1205@gmail.com">christychow1205@gmail.com</a></p>
-<p><strong>Phone:</strong> <a href="tel:626-999-1287">626-999-1287</a></p>
-        <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6338.404054254222!2d-121.87705132264549!3d37.408699472080045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fce9975dc75b7%3A0xfa9f0575d7c6086f!2s1967%20Junewood%20Ave%2C%20San%20Jose%2C%20CA%2095132!5e0!3m2!1sen!2sus!4v1734479952660!5m2!1sen!2sus"
-            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <p><strong>Email:</strong> <a href="mailto:christychow1205@gmail.com">christychow1205@gmail.com</a></p>
+        <p><strong>Phone:</strong> <a href="tel:626-999-1287">626-999-1287</a></p>
+        <div class="contact-map">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6338.404054254222!2d-121.87705132264549!3d37.408699472080045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fce9975dc75b7%3A0xfa9f0575d7c6086f!2s1967%20Junewood%20Ave%2C%20San%20Jose%2C%20CA%2095132!5e0!3m2!1sen!2sus!4v1734479952660!5m2!1sen!2sus"
+                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
     </section>
 
     <footer>
