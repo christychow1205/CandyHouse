@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Typing Practice Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
+    #game {
+      margin-top: 20px;
+      display: none;
+    }
+    #current-letter {
+      font-size: 60px;
+      font-weight: bold;
+      margin: 20px;
+    }
+    #input {
+      font-size: 30px;
+      width: 100px;
+      text-align: center;
+    }
+    .stats {
+      margin-top: 20px;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Typing Game - 24 Letters</h1>
+
+<label for="letterCount">How many letters to type: </label>
+<input type="number" id="letterCount" min="1" max="100" value="10">
+<button id="startBtn">Start</button>
+
+<div id="game">
+  <div id="current-letter">A</div>
+  <input type="text" id="input" maxlength="1" autofocus>
+  <div class="stats">
+    <div id="timer">Time: 0s</div>
+    <div id="accuracy">Accuracy: 100%</div>
+    <div id="speed">Speed: 0 letters/min</div>
+  </div>
+</div>
+
+<script>
+  const allLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.replace(/[QZ]/g, '').split('');
+  let letterSequence = [];
+  let currentIndex = 0;
+  let correctCount = 0;
+  let errorCount = 0;
+  let startTime = null;
+  let timerInterval;
+
+  const startBtn = document.getElementById('startBtn');
+  const letterCountInput = document.getElementById('letterCount');
+  const gameDiv = document.getElementById('game');
+  const currentLetterDiv = document.getElementById('current-letter');
+  const inputBox = document.getElementById('input');
+  const timerDiv = document.getElementById('timer');
+  const accuracyDiv = document.getElementById('accuracy');
+  const speedDiv = document.getElementById('speed');
+
+  function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
+
+  startBtn.addEventListener('click', () => {
+    const count = parseInt(letterCountInput.value);
+    if (isNaN(count) || count < 1) return alert("Please enter a valid number!");
+
+    // Prepare game state
+    letterSequence = [];
+    for (let i = 0; i < count; i++) {
+      const letter = allLetters[Math.floor(Math.random() * allLetters.length)];
+      letterSequence.push(letter);
+    }
+
+    currentIndex = 0;
+    correctCount = 0;
+    errorCount = 0;
+    startTime = Date.now();
+    gameDiv.style.display = 'block';
+    updateStats();
+    currentLetterDiv.textContent = letterSequence[currentIndex];
+    inputBox.value = '';
+    inputBox.focus();
+
+    clearInterval(timerInterval);
+    timerInterval = setInterval(updateStats, 500);
+  });
+
+  inputBox.addEventListener('input', () => {
+    const typed = inputBox.value.toUpperCase();
+    const expected = letterSequence[currentIndex];
+
+    if (typed === expected) {
+      correctCount++;
+      currentIndex++;
+      if (currentIndex >= letterSequence.length) {
+        clearInterval(timerInterval);
+        updateStats(true);
+        alert("Finished!");
+        return;
+      }
+      currentLetterDiv.textContent = letterSequence[currentIndex];
+      inputBox.value = '';
+    } else if (typed.length === 1) {
+      errorCount++;
+      inputBox.value = ''; // clear input, force retry
+    }
+  });
+
+  function updateStats(final = false) {
+    const elapsedSeconds = (Date.now() - startTime) / 1000;
+    timerDiv.textContent = `Time: ${elapsedSeconds.toFixed(1)}s`;
+
+    const totalTyped = correctCount + errorCount;
+    const accuracy = totalTyped > 0 ? (correctCount / totalTyped * 100).toFixed(1) : 100;
+    const speed = elapsedSeconds > 0 ? (correctCount / elapsedSeconds * 60).toFixed(1) : 0;
+
+    accuracyDiv.textContent = `Accuracy: ${accuracy}%`;
+    speedDiv.textContent = `Speed: ${speed} letters/min`;
+
+    if (final) inputBox.disabled = true;
+  }
+</script>
+
+</body>
+</html>
